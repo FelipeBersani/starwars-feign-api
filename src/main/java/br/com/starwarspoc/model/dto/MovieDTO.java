@@ -1,5 +1,6 @@
 package br.com.starwarspoc.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
@@ -12,13 +13,17 @@ import java.util.List;
 @Data
 public class MovieDTO {
 
-    private String title;
-    private Integer episode_id;
-    private String opening_crawl;
-    private String director;
-    private String producer;
+    @JsonAlias("episode_id")
+    private Integer episodeId;
+    @JsonAlias("opening_crawl")
+    private String openingCrawl;
     @JsonDeserialize(using = LocalDateDeserializer.class)
-    private LocalDate release_date;
+    @JsonAlias("release_date")
+    private LocalDate releaseDate;
+
+    private String director;
+    private String title;
+    private String producer;
     private List<String> characters;
     private List<String> planets;
     private List<String> starships;

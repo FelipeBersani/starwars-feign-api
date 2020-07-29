@@ -1,6 +1,7 @@
 package br.com.starwarspoc.model.dto;
 
 import br.com.starwarspoc.model.converter.GenderDeserializer;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
 
@@ -10,13 +11,18 @@ import java.util.List;
 @Data
 public class ActorDTO {
 
+    @JsonAlias(value = "hair_color")
+    private String hairColor;
+    @JsonAlias(value = "skin_color")
+    private String skinColor;
+    @JsonAlias(value = "eye_color")
+    private String eyeColor;
+    @JsonAlias(value = "birth_year")
+    private String birthYear;
+
     private String name;
     private String height;
     private String mass;
-    private String hair_color;
-    private String skin_color;
-    private String eye_color;
-    private String birth_year;
     @JsonDeserialize(using = GenderDeserializer.class)
     private String gender;
     private String homeworld;
